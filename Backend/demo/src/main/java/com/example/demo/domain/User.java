@@ -11,6 +11,7 @@ public class User {
     public User(String username, String password, double userBalance ) {
         this.username = username;
         this.password = password;
+        this.userBalance = userBalance;
 
     }
 
@@ -40,5 +41,16 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "username='" + username + '\'' + ", password='" + password + '\'' + ", bankBalance=" + userBalance + '}';
+    }
+
+    public static void main(String[] args) {
+        User user = new User("john_doe", "securepassword", 1000.50);
+        System.out.println(user);
+
+        user.setUsername("jane_doe");
+        user.setPassword("newpassword");
+        user.setUserBalance(2000.75);
+
+        System.out.println(user);
     }
 }
