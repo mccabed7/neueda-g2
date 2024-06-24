@@ -3,28 +3,29 @@ package com.example.demo.service;
 
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
+    @Autowired
+    UserRepository userRepository;
 
-    UserRepository userRepository = new UserRepository();
-
-    public boolean addUsers(User user)
+    public  boolean addUsers(String userName, String password)
     {
-        /*
-        if(userRepository.existsByName(user.getUserKey()))
-        {
-            return false;
+        if(userRepository.findByName(userName) != null){
+            userRepository.addUser(userName,password);
+            return true;
         }
-        */
-        //userRepository.insert(user);
-        return true;
+        return false;
     }
 
-    public float getBalance(User user){
-        
+    public boolean attemptLogin(String username, String password){
+        /*
+        if(userRepository.findUser(username
+         */
+        return false;
     }
 
 
