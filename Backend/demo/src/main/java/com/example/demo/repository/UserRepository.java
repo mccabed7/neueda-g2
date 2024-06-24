@@ -1,9 +1,12 @@
 package com.example.demo.repository;
 import java.util.ArrayList;
 import com.example.demo.domain.User;
+import org.springframework.stereotype.Repository;
 
+
+@Repository
 public class UserRepository {
-    private ArrayList<User> userList;
+    private static ArrayList<User> userList;
 
     public UserRepository(){
         userList = new ArrayList<User>();
@@ -17,5 +20,9 @@ public class UserRepository {
             }
         }
         return null;
+    }
+
+    public void addUser(User user){
+        userList.add(user);
     }
 }
