@@ -12,10 +12,10 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public  boolean addUsers(String userName, String password)
+    public  boolean addUsers(User user)
     {
-        if(userRepository.findByName(userName) != null){
-            userRepository.addUser(userName,password);
+        if(userRepository.findByName(user.getUsername()) != null){
+            userRepository.addUser(user);
             return true;
         }
         return false;
@@ -26,6 +26,11 @@ public class UserService {
         if(userRepository.findUser(username
          */
         return false;
+    }
+
+
+    public float getBalance(User user){
+        return (float)user.getUserBalance();
     }
 
 

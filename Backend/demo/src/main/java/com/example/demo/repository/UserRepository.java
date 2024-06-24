@@ -22,7 +22,7 @@ public class UserRepository {
         return null;
     }
 
-    public void addUser(String userName, String password){
-        userList.add(new User(userName, password, 0.0));
+    public void addUser(User user){
+        userList.add(user);
     }
 }
