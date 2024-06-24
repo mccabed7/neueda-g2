@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @EnableScheduling
-@RestController					// must be added to all rest controller classes
+@RestController // must be added to all rest controller classes
 public class DemoApplication implements CommandLineRunner {
 
 	@Autowired
@@ -26,9 +26,11 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception{
+	public void run(String... args) throws Exception {
 		userRepository.addUser(new User("Person", "password12", 20f));
+		userRepository.addUser(new User("Person2", "password123", 50f));
 		System.out.println(userRepository.findByName("Person").toString());
+		System.out.println(userRepository.findByName("Person2").toString());
 	}
 
 }
