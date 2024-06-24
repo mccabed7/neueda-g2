@@ -21,11 +21,23 @@ public class UserService {
         return false;
     }
 
-    public boolean attemptLogin(String username, String password){
-        /*
-        if(userRepository.findUser(username
-         */
+
+
+    public boolean attemptLogin(User user){
+        User foundUser = userRepository.findByName(user.getUsername());
+        if (foundUser == null) return false;
+        if (foundUser.getPassword() == user.getPassword()) return true;
         return false;
+    }
+
+    public boolean sendMoney(User fromUser, User toUser, float amount){
+        User foundFrom = userRepository.findByName(fromUser.getUsername());
+        User foundTo = userRepository.findByName(toUser.getUsername());
+        if(foundFrom == null || foundTo == null) return false;
+        if(foundFrom.getUserBalance() < amount) return false;
+        foundTo.setUserBalance(foundTo.getUserBalance() - amount);
+        foundFrom.setUserBalance(foundFrom.getUserBalance() + amount);
+        return true;
     }
 
 
