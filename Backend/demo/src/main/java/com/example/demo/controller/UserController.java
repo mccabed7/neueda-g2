@@ -2,11 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.service.UserService;
 import com.example.demo.domain.User;
-import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
-// Allow CORS from named origin
+// Allow CORS from any origin
 @CrossOrigin
 @RestController
 public class UserController {
@@ -17,6 +21,7 @@ public class UserController {
 
     /* POST */
 
+    /* Add user, ensuring "username" and "password" are sent in as JSON */
     @PostMapping("/api/addUser")
     public ResponseEntity<?> addNewUser(@RequestParam("newUser") User newUser) {
         if (service.addUsers(newUser)) {
@@ -25,6 +30,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /* Verify username and password against list/database */
     @PostMapping("/api/verify")
     public ResponseEntity<?> verifyUser(@RequestBody User user) {
         System.out.println(user.getUsername() + " " + user.getPassword());
@@ -37,6 +43,8 @@ public class UserController {
 
     /* PUT */
 
+    /* Facilitates sending of money from one user to another */
+    /* Takes sender username, recipient username and amount to send from sender */
     @PutMapping("/api/users")
     public ResponseEntity<?> updateBalance(@RequestParam String senderName,
             @RequestParam String recipientName,
@@ -56,6 +64,7 @@ public class UserController {
 
     /* GET */
 
+    /* Gets a user's balance from their username in params */
     @GetMapping("/api/users")
     public String getUserBalance(@RequestParam String username) {
         if (service.getUser(username) != null) {
@@ -64,5 +73,16 @@ public class UserController {
 
         // Returning null if user not found
         return "User not found";
+    }
+
+    /*
+     * Gets ALL users and their balance
+     * Response is in JSON format
+     */
+    @GetMapping(path = "/api/users/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllUsers() {
+        Map<String, String> map = service.getAllUsers();
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }

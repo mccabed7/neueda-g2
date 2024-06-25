@@ -29,8 +29,8 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		userRepository.addUser(new User("Person", "password12", 20f));
 		userRepository.addUser(new User("Person2", "password123", 50f));
-		System.out.println(userRepository.findByName("Person").toString());
-		System.out.println(userRepository.findByName("Person2").toString());
+		userRepository.addUser(new User("Person3", "password1234", 100f));
+		userRepository.addUser(new User("Person4", "password1235", 80f));
+		userRepository.addUser(new User("admin", "admin123", 100000f));
 	}
-
 }

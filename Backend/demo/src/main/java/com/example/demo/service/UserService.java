@@ -2,6 +2,9 @@ package com.example.demo.service;
 
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,5 +78,9 @@ public class UserService {
 
     public User getUser(String name) {
         return userRepository.findByName(name);
+    }
+
+    public Map<String, String> getAllUsers() {
+        return userRepository.getAllUsers();
     }
 }
