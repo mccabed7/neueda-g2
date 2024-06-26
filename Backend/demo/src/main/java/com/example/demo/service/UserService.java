@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,8 @@ public class UserService {
      *         use.
      */
     public boolean addUsers(User user) {
-        if (userRepository.findByName(user.getUsername()) != null) {
-            userRepository.addUser(user);
+        if (userRepository.findByUsername(user.getUsername()) != null) {
+            userRepository.save(user);
             return true;
         }
         return false;
@@ -38,7 +40,7 @@ public class UserService {
      * @return True if login successful. False otherwise.
      */
     public boolean attemptLogin(User user) {
-        User foundUser = userRepository.findByName(user.getUsername());
+        User foundUser = userRepository.findByUsername(user.getUsername());
         if (foundUser == null)
             return false;
         if (foundUser.getPassword().equals(user.getPassword()))
@@ -55,8 +57,8 @@ public class UserService {
      * @return True if sent successfully. False if failed recipient not found.
      */
     public boolean sendMoney(User fromUser, User toUser, float amount) {
-        User foundFrom = userRepository.findByName(fromUser.getUsername());
-        User foundTo = userRepository.findByName(toUser.getUsername());
+        User foundFrom = userRepository.findByUsername(fromUser.getUsername());
+        User foundTo = userRepository.findByUsername(toUser.getUsername());
         if (foundFrom == null || foundTo == null)
             return false;
         if (foundFrom.getUserBalance() < amount)
@@ -67,20 +69,30 @@ public class UserService {
     }
 
     /**
-     * Attempt login given a user object
+     * Get balance of a user object.
      * 
      * @param user User object containing at least a name. Balance not needed.
      * @return Float with user balance.
      */
     public float getBalance(User user) {
-        return (float) user.getUserBalance();
+        return (float) userRepository.findByUsername(user.getUsername()).getUserBalance();
     }
 
     public User getUser(String name) {
-        return userRepository.findByName(name);
+        return userRepository.findByUsername(name);
     }
 
     public Map<String, String> getAllUsers() {
-        return userRepository.getAllUsers();
+        /*
+        Map<String, String> map = new HashMap<>();
+        Iterable<User> userList = userRepository.findAll();
+        // Iterate through userList, add info to map
+        // "username" : "balance"
+        for (User user : userList) {
+            map.put(user.getUsername(), Double.toString(user.getUserBalance()));
+        }
+        */
+        return null;
+        //return userRepository.getAllUsers();
     }
 }
