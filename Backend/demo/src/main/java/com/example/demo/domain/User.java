@@ -1,18 +1,36 @@
 package com.example.demo.domain;
 
+import jakarta.persistence.*;
+//import org.hibernate.annotations.Table;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long identifier;
     private String username;
     private String password;
     private double userBalance;
 
 
+    public User(){}
+
     public User(String username, String password, double userBalance ) {
         this.username = username;
         this.password = password;
         this.userBalance = userBalance;
+    }
 
+    public Long getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(Long id) {
+        this.identifier = id;
     }
 
     public String getUsername() {
