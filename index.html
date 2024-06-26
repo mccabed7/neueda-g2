@@ -6,8 +6,7 @@
     <title>Citi Balance Buddy</title>
     <!-- Core Bootstrap -->
     <link href="static/css/style.css" rel="stylesheet" />
-  </head>
-  <body>
+
     <style>
       input[type = "username"]{
         border-bottom-left-radius: 0px;
@@ -20,14 +19,14 @@
       }
 
       .btn-custom {
-            background-color: #056cae; /* Default blue color */
-            color: white; /* Text color */
-            border: none; /* Optional: Remove border */
+            background-color: #056cae;
+            color: white; 
+            border: none; 
         }
         .btn-custom:hover {
-            background-color: #66b2ff; /* Lighter blue for hover */
-            color: white; /* Text color */
-            border: none; /* Optional: Remove border */
+            background-color: #66b2ff; 
+            color: white; 
+            border: none; 
         }
         body{
           display:flex;
@@ -35,6 +34,11 @@
           align-items: center;
           min-height: 100vh;
           background-color: #056cae;
+        }
+
+        .navbar{
+          background:white;
+
         }
 
         .wrapping{
@@ -47,6 +51,33 @@
         }
 
     </style>
+    
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: white;">
+      <a class="navbar-brand" href="#">
+        <img src="https://p7.hiclipart.com/preview/247/557/297/citibank-citigroup-logo-bank.jpg" width="65" height="40" class="d-inline-block align-top" alt="Citi Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    
 
     <div class="wrapping" style="background-color: white;">
       <form style = "max-width:480px;margin:auto;">
