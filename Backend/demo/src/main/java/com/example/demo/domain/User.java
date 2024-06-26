@@ -51,6 +51,7 @@ public class User {
         user.setPassword("newpassword");
         user.setUserBalance(2000.75);
 
+
         System.out.println(user);
     }
 }
