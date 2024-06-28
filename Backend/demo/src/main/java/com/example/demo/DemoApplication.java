@@ -28,9 +28,9 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		userRepository.save(new User("Person", "password12", 20f));
-		//userRepository.save(new User("Person2", "password123", 50f));
-		//userRepository.save(new User("Person3", "password1234", 100f));
-		//userRepository.save(new User("Person4", "password1235", 80f));
-		//userRepository.save(new User("admin", "admin123", 100000f));
+		userRepository.save(new User("Person2", "password123", 50.51f));
+		// userRepository.save(new User("Person3", "password1234", 100f));
+		// userRepository.save(new User("Person4", "password1235", 80f));
+		userRepository.save(new User("admin", "admin123", 100000f));
 	}
 }

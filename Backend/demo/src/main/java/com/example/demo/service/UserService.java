@@ -3,10 +3,6 @@ package com.example.demo.service;
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,17 +78,9 @@ public class UserService {
         return userRepository.findByUsername(name);
     }
 
-    public Map<String, String> getAllUsers() {
-        /*
-        Map<String, String> map = new HashMap<>();
+    public Iterable<User> getAllUsers() {
         Iterable<User> userList = userRepository.findAll();
-        // Iterate through userList, add info to map
-        // "username" : "balance"
-        for (User user : userList) {
-            map.put(user.getUsername(), Double.toString(user.getUserBalance()));
-        }
-        */
-        return null;
-        //return userRepository.getAllUsers();
+
+        return userList;
     }
 }

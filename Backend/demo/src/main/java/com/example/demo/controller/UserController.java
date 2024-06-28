@@ -3,9 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.service.UserService;
 import com.example.demo.domain.User;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -66,13 +63,14 @@ public class UserController {
 
     /* Gets a user's balance from their username in params */
     @GetMapping("/api/users")
-    public String getUserBalance(@RequestParam String username) {
+    public ResponseEntity<?> getUserBalance(@RequestParam String username) {
         if (service.getUser(username) != null) {
-            return Float.toString(service.getBalance(service.getUser(username)));
+            float balance = service.getBalance(service.getUser(username));
+            return new ResponseEntity<>(balance, HttpStatus.OK);
         }
 
         // Returning null if user not found
-        return "User not found";
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /*
@@ -81,8 +79,7 @@ public class UserController {
      */
     @GetMapping(path = "/api/users/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllUsers() {
-        Map<String, String> map = service.getAllUsers();
-
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        Iterable<User> userList = service.getAllUsers();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 }

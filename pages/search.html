@@ -4,23 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Neueda G2</title>
+    <!-- Vue CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- Core Bootstrap -->
     <link href="../static/css/style.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Main body -->
     <main>
-      <div class="container text-center">
+      <div class="container text-center" id="app">
         <div class="row text-center mt-5">
           <div class="col">
             <a
-              class="btn btn-primary btn-sm mb-3"
+              class="btn btn-primary btn-sm mb-3 mx-1"
               href="../index.html"
               role="button"
               >Back to Login</a
             >
+            <button class="btn btn-primary btn-sm mb-3 mx-1" @click="fetchAll">
+              See all results
+            </button>
             <div class="input-group mb-3">
-              <button class="btn btn-info" type="button" id="button-addon1">
+              <button
+                class="btn btn-info"
+                type="button"
+                id="button-addon1"
+                @click="fetchSpecificUsername"
+              >
                 Search by username
               </button>
               <input
@@ -29,6 +39,7 @@
                 placeholder=""
                 aria-label="Search field"
                 aria-describedby="button-addon1"
+                v-model="message"
               />
             </div>
           </div>
@@ -37,9 +48,9 @@
           <div class="col">
             <div class="card">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">[ search result ]</li>
-                <li class="list-group-item">[ search result ]</li>
-                <li class="list-group-item">[ search result ]</li>
+                <li class="list-group-item" v-for="[ key, value ] in users">
+                  {{ key }} with balance £{{ value }}
+                </li>
               </ul>
             </div>
           </div>
@@ -52,4 +63,43 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"
   ></script>
+  <!-- Vue script for fetching and displaying appropriate results -->
+  <script type="module">
+    const App = {
+      data() {
+        return {
+          users: new Map(),
+        };
+      },
+
+      methods: {
+        // Fetch all users
+        fetchAll() {
+          this.users.clear();
+          fetch("http://localhost:8080/api/users/all")
+            .then((response) => response.json())
+            .then((data) => {
+              // Add each JSON user object into map
+              for (let x in data) {
+                this.users.set(
+                  data[x].username,
+                  data[x].userBalance.toFixed(2)
+                );
+              }
+            });
+        },
+        fetchSpecificUsername() {
+          this.users.clear();
+          fetch(`http://localhost:8080/api/users?username=${this.message}`)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              this.users.set(this.message, data);
+            });
+        },
+      },
+    };
+
+    Vue.createApp(App).mount("#app");
+  </script>
 </html>
