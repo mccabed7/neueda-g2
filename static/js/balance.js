@@ -11,6 +11,7 @@ function displayUserDetails()
     req.send();
     if (req.status == 200)
     {
+        document.getElementById("Welcome").innerHTML = "Welcome " + username + "!";
         document.getElementById("balance").innerHTML = "User: " + username + " with balance: £" + req.responseText;
     }
 }
