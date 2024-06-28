@@ -9,8 +9,11 @@ function login()
     req.open("POST", attemptURL, false)
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     req.send(reqJson);
-    if (req.status == 200)
+    // Admin credentials leads to search page, else normal page
+    if (req.status == 200 && username == "admin")
     {
+        window.location = "./pages/search.html";
+    } else if (req.status  == 200) {
         window.location = "./pages/balance.html?username=" + username;
     }
     else
