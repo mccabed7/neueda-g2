@@ -57,10 +57,10 @@ public class UserService {
         User foundTo = userRepository.findByUsername(toUser.getUsername());
         if (foundFrom == null || foundTo == null)
             return false;
-        if (foundFrom.getUserBalance() < amount)
+        if (foundFrom.getUserBalance() <= amount)
             return false;
-        foundTo.setUserBalance(foundTo.getUserBalance() - amount);
-        foundFrom.setUserBalance(foundFrom.getUserBalance() + amount);
+        foundTo.setUserBalance(foundTo.getUserBalance() + amount);
+        foundFrom.setUserBalance(foundFrom.getUserBalance() - amount);
         return true;
     }
 

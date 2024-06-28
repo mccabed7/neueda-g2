@@ -15,3 +15,14 @@ function displayUserDetails()
         document.getElementById("balance").innerHTML = "User: " + username + " with balance: £" + req.responseText;
     }
 }
+
+function redirectSendMoney() 
+{
+    const url = window.location.search;
+    params = new URLSearchParams(url);
+    username = params.get('username')
+    document.getElementById("balance").innerHTML = "User: " + username;
+
+    // Redirect to sendmoney page
+    window.location = "./sendMoney.html?username=" + username;
+}

@@ -55,7 +55,10 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        service.sendMoney(sender, recipient, Float.parseFloat(amount));
+        boolean requestSuccess = service.sendMoney(sender, recipient, Float.parseFloat(amount));
+        System.out.println("SEND: " + sender.getUserBalance() + " " + requestSuccess);
+        System.out.println("RECEIVE: " + recipient.getUserBalance());
+        System.out.println(sender);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -67,6 +70,7 @@ public class UserController {
         if (service.getUser(username) != null) {
             float balance = service.getBalance(service.getUser(username));
             return new ResponseEntity<>(balance, HttpStatus.OK);
+
         }
 
         // Returning null if user not found
