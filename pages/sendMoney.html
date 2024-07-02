@@ -143,7 +143,7 @@
                 method: "PUT",
               };
               fetch(
-                `http://localhost:8080/api/users?senderName=${this.username}&recipientName=${this.recipientMessage}&amount=${leftover}`,
+                `http://localhost:8080/api/users?senderName=${this.username}&recipientName=${this.recipientMessage}&amount=${this.amountMessage}`,
                 requestOptions
               )
                 .then((response) => {

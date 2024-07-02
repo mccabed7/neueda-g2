@@ -83,4 +83,8 @@ public class UserService {
 
         return userList;
     }
+
+    private void printLog(String message){
+        System.out.println("---SERVICE LOG--- " + message);
+    }
 }

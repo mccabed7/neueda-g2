@@ -14,12 +14,12 @@ public class User {
     private Long identifier;
     private String username;
     private String password;
-    private double userBalance;
+    private float userBalance;
 
 
     public User(){}
 
-    public User(String username, String password, double userBalance ) {
+    public User(String username, String password, float userBalance ) {
         this.username = username;
         this.password = password;
         this.userBalance = userBalance;
@@ -49,11 +49,11 @@ public class User {
         this.password = password;
     }
 
-    public double getUserBalance() {
+    public float getUserBalance() {
         return userBalance;
     }
 
-    public void setUserBalance(double userBalance) {
+    public void setUserBalance(float userBalance) {
         this.userBalance = userBalance;
     }
     @Override
@@ -62,12 +62,12 @@ public class User {
     }
 
     public static void main(String[] args) {
-        User user = new User("john_doe", "securepassword", 1000.50);
+        User user = new User("john_doe", "securepassword", 1000.50f);
         System.out.println(user);
 
         user.setUsername("jane_doe");
         user.setPassword("newpassword");
-        user.setUserBalance(2000.75);
+        user.setUserBalance(2000.75f);
 
 
         System.out.println(user);
