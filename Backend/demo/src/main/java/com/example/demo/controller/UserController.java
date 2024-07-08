@@ -56,8 +56,8 @@ public class UserController {
         }
 
         boolean requestSuccess = service.sendMoney(sender, recipient, Float.parseFloat(amount));
-        System.out.println("SEND: " + sender.getUserBalance() + " " + requestSuccess);
-        System.out.println("RECEIVE: " + recipient.getUserBalance());
+        System.out.println("SENDER BALANCE/SUCCESS: " + sender.getUserBalance() + " " + requestSuccess);
+        System.out.println("RECEIVER BALANCE: " + recipient.getUserBalance());
         System.out.println(sender);
         return new ResponseEntity<>(HttpStatus.OK);
     }
