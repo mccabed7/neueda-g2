@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.service.UserService;
 import com.example.demo.domain.User;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class UserController {
     /* POST */
 
     /* Add user, ensuring "username" and "password" are sent in as JSON */
+    @Operation(summary = "Add new user", description = "Adds a new user to the system given username and password")
     @PostMapping("/api/addUser")
     public ResponseEntity<?> addNewUser(@RequestParam("newUser") User newUser) {
         if (service.addUsers(newUser)) {
@@ -28,6 +30,7 @@ public class UserController {
     }
 
     /* Verify username and password against list/database */
+    @Operation(summary = "Login with user details", description = "Returns ok if valid username and password")
     @PostMapping("/api/verify")
     public ResponseEntity<?> verifyUser(@RequestBody User user) {
         System.out.println(user.getUsername() + " " + user.getPassword());
@@ -42,6 +45,7 @@ public class UserController {
 
     /* Facilitates sending of money from one user to another */
     /* Takes sender username, recipient username and amount to send from sender */
+    @Operation(summary = "Send money", description = "Send money from one account to another")
     @PutMapping("/api/users")
     public ResponseEntity<?> updateBalance(@RequestParam String senderName,
             @RequestParam String recipientName,
@@ -65,6 +69,7 @@ public class UserController {
     /* GET */
 
     /* Gets a user's balance from their username in params */
+    @Operation(summary = "Gets user balance", description = "Gets user balance")
     @GetMapping("/api/users")
     public ResponseEntity<?> getUserBalance(@RequestParam String username) {
         if (service.getUser(username) != null) {
@@ -81,6 +86,7 @@ public class UserController {
      * Gets ALL users and their balance
      * Response is in JSON format
      */
+    @Operation(summary = "Get all users", description = "Returns all users and their balances")
     @GetMapping(path = "/api/users/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllUsers() {
         Iterable<User> userList = service.getAllUsers();
