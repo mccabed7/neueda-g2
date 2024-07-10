@@ -147,20 +147,19 @@
                 requestOptions
               )
                 .then((response) => {
-                  console.log(response.json());
+                  console.log(response);
                 })
                 .then((data) => {});
 
               this.currentBalance = leftover;
-              // Update current balance display
-              // document.getElementById("balance").innerHTML =
-              //   "Note: You have £" + leftover + " left.";
 
-              /* TEST PURPOSES */
+              // Update current balance display
               fetch("http://localhost:8080/api/users?username=" + this.username)
                 .then((response) => response.json())
                 .then((data) => {
                   console.log("PERSON BALANCE: " + data);
+                  document.getElementById("balance").innerHTML =
+                    "Note: You have £" + data + " left.";
                 });
             } else {
               return;
