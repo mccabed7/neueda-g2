@@ -32,5 +32,10 @@ public class DemoApplication implements CommandLineRunner {
 		// userRepository.save(new User("Person3", "password1234", 100f));
 		// userRepository.save(new User("Person4", "password1235", 80f));
 		userRepository.save(new User("admin", "admin123", 100000f));
+		System.out.println(GREEN_BOLD + "View SwaggerUI at http://localhost:8080/swagger-ui.html" + RESET);
 	}
+
+	public static final String GREEN_BOLD = "\033[1;32m";  // GREEN
+	public static final String RESET = "\033[0m";
+
 }
