@@ -17,10 +17,27 @@
         border-top: 0px;
       }
 
+      body{
+          display:flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background-color: #056cae;
+        }
+
       .btn-custom {
         background-color: #056cae;
-        color: white;
         border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 40px;
+        text-decoration: none;
+        width: 1200px;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 16px;
       }
       .btn-custom:hover {
         background-color: #66b2ff;
@@ -29,29 +46,40 @@
       }
 
       h1 {
-        color: #6b6b6b;
+        color: black;
         border: none;
+        font-size: 100px;
       }
-      body {
-        background-color: white;
-        padding-top: 70px; /* Add padding to prevent overlap */
+      .btn-primary{
+        background-color: #056cae;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 16px;
+      }
+      #balance{
+        font-size: 50px;
       }
 
-      .wrapping {
-        width: 800px;
-        height: 400px;
-        background: white;
-        color: grey;
-        border-radius: 10px;
-        text-align: center;
-      }
+      .wrapping{
+          width: calc(100vh - 50px);
+          height: calc(80vh - 50px);
+          background:white;
+          color:grey;
+          border-radius: 10px;
+          text-align: center;
+        }
     </style>
   </head>
   <body onload="displayUserDetails()">
     <div>
       <nav
         class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-        style="background-color: white"
       >
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
@@ -87,28 +115,44 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="search.html">Search Users</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     </div>
-    <div
-      class="center-content d-flex justify-content-center align-items-center"
-    >
-      <h1 id="Welcome">Welcome</h1>
-    </div>
 
     <main id="main">
-      <div class="container">
-        <p class="mt-5" id="balance">Hello!</p>
-        <a
-          class="btn btn-primary btn-sm mt-2"
-          href="../index.html"
-          role="button"
-          >Back to Login</a
+      <div class="wrapping" style="background-color: white;">
+        <h1 id="Welcome">Welcome</h1>
+        <p class="mt-5" id="balance">Balance</p>
+        <div>
+          <a
+            class="btn btn-custom btn-sm mt-2"
+            href="../index.html"
+            role="button"
+            >Back to Login</a
         >
+        </div>
+        <div>
+          <a
+            class="btn btn-custom btn-sm mt-2"
+            href="sendMoney.html"
+            role="button"
+          >Transfer Funds
+          </a>
+        </div>
+        <div>
+          <a
+            class="btn btn-custom btn-sm mt-2"
+            href="search.html"
+            role="button"
+            >Search Users
+          </a>
+        </div>
+        
+       
       </div>
     </main>
   </body>
