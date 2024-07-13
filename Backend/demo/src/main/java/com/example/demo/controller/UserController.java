@@ -6,11 +6,13 @@ import com.example.demo.domain.User;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 // Allow CORS from any origin
 @CrossOrigin
 @RestController
+@Transactional
 public class UserController {
     @Autowired
     private UserService service;
@@ -60,9 +62,7 @@ public class UserController {
         }
 
         boolean requestSuccess = service.sendMoney(sender, recipient, Float.parseFloat(amount));
-        System.out.println("SENDER BALANCE/SUCCESS: " + sender.getUserBalance() + " " + requestSuccess);
-        System.out.println("RECEIVER BALANCE: " + recipient.getUserBalance());
-        System.out.println(sender);
+        System.out.println("TRANSACTION SUCCESS: " + sender.getUserBalance() + " " + requestSuccess);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

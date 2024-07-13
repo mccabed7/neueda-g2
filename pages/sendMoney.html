@@ -20,13 +20,13 @@
         border-top: 0px;
       }
 
-      body{
-          display:flex;
-          justify-content: center;
-          align-items: center;
-          min-height: 100vh;
-          background-color: #056cae;
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #056cae;
+      }
 
       .btn-custom {
         background-color: #056cae;
@@ -54,7 +54,7 @@
         border: none;
         font-size: 100px;
       }
-      .btn-primary{
+      .btn-primary {
         background-color: #056cae;
         border: none;
         color: white;
@@ -66,18 +66,18 @@
         cursor: pointer;
         border-radius: 16px;
       }
-      #balance{
+      #balance {
         font-size: 50px;
       }
 
-      .wrapping{
-          width: calc(100vh - 50px);
-          height: calc(80vh - 50px);
-          background:white;
-          color:grey;
-          border-radius: 10px;
-          text-align: center;
-        }
+      .wrapping {
+        width: calc(100vh - 50px);
+        height: calc(80vh - 50px);
+        background: white;
+        color: grey;
+        border-radius: 10px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -135,7 +135,7 @@
               <button
                 type="button"
                 class="btn btn-primary btn-sm"
-                @click="verifyRequest"
+                @click.stop="verifyRequest"
               >
                 Submit
               </button>
@@ -146,16 +146,15 @@
               <div class="card">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item" v-for="[ key, value ] in users">
-                    Money successfully sent to {{ key }} {{value}}.
+                    Money successfully sent to {{ key }} (their balance =
+                    {{value}}).
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
-      
     </main>
   </body>
   <script
@@ -185,11 +184,11 @@
           .then((response) => response.json())
           .then((data) => {
             // Update current balance to what is in DB
-            this.currentBalance = data;
+            this.currentBalance = data.toFixed(2);
             this.username = username;
             // Display to user their balance
             document.getElementById("balance").innerHTML =
-              "Note: You have £" + data + " left.";
+              "Note: You have £" + data.toFixed(2) + " left.";
           });
       },
 
@@ -204,7 +203,7 @@
           )
             .then((response) => response.json())
             .then((data) => {
-              this.users.set(this.recipientMessage, data);
+              this.users.set(this.recipientMessage, data.toFixed(2));
               this.recipientExists = true;
             });
 
@@ -232,9 +231,9 @@
               fetch("http://localhost:8080/api/users?username=" + this.username)
                 .then((response) => response.json())
                 .then((data) => {
-                  console.log("PERSON BALANCE: " + data);
+                  console.log("PERSON BALANCE: " + data.toFixed(2));
                   document.getElementById("balance").innerHTML =
-                    "Note: You have £" + data + " left.";
+                    "Note: You have £" + data.toFixed(2) + " left.";
                 });
             } else {
               return;
