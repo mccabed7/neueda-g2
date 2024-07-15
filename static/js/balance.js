@@ -12,7 +12,7 @@ function displayUserDetails()
     if (req.status == 200)
     {
         document.getElementById("Welcome").innerHTML = "Welcome " + username + "!";
-        document.getElementById("balance").innerHTML = "Your balance is £" + (parseFloat(req.responseText)).toFixed(2);
+        document.getElementById("balance").innerHTML = "User: " + username + " with balance: £" + req.responseText;
     }
 }
 
