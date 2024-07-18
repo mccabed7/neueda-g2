@@ -44,5 +44,4 @@ public class Transaction {
                 ", timestamp=" + timestamp +
                 '}';
     }
-
 }
