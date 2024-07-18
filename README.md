@@ -3,7 +3,8 @@
 # Project Brief
 As part of our internship program at Citi, we are participating in an associated hackathon organised by Neueda (https://s3.eu-west-1.amazonaws.com/neueda.conygre.com/Sites/Tech_Intern_TI_EMEA_APP/site/index.html). <br>
 The open-ended goal is to create an interesting proof-of-concept web app in one of Citi's business domains (stocks, personal banking, etc.) <br>
-Technologies used must include Java, Springboot, Maven, SwaggerUI, and a web-development framework of our choosing.
+Technologies used must include Java, Springboot, Maven, SwaggerUI, and a web-development framework of our choosing. <br>
+The start and end dates for the hackathon, including introductory sessions, are `20-June-2024` to `18-July-2024`.
 
 # Our Team, and Our Project
 We are Group-2, consisting of Kayee Liu, Colm Livingstone and Declan McCabe. <br>
